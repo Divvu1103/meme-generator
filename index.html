@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+  <title>Meme genrator</title>
+  <style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #9b59b6;
+    background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
+ 
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.box {
+    background-color: white;
+    background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    width: 1000px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.box h2 {
+    margin-top: 0;
+}
+
+
+
+.box button {
+  
+    background-color: rebeccapurple;
+    background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0.5rem 1rem;
+    transition: transform 0.1s linear;
+}
+#imagechange{
+  border: black;
+  border-width: 20%;
+  border-radius: 5%;
+}
+
+    
+
+
+
+
+  </style>
+</head>
+<body>
+   
+   <div class="box">
+    <h2>Meme Generator</h2>
+   <img src="" alt="" srcset="" id="imagechange" width="50%" height="50%">
+   <p></p>
+   <button id="change"> next meme</button>
+  </div>
+
+
+
+
+
+  <script>
+const image = document.getElementById('imagechange');
+const change = document.getElementById('change');
+
+const API_URL = `https://meme-api.herokuapp.com/gimme`;
+
+getJoke();
+
+async function getJoke() {
+	const res = await fetch(API_URL);
+	const data = await res.json();
+	
+  image.src = data.url;
+
+}
+
+change.addEventListener('click', getJoke);
+
+  </script>
+  
+</body>
+</html>
